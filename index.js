@@ -17,22 +17,22 @@ var T = new Twit({
 
 (async () => {
 
-    // //1. GET RECENT TWEETS
-    // T.get('search/tweets', { q: '#tesla since:2020-04-15', count: 100 }, function(err, data, response) {
-    //   const tweets = data.statuses
-    //   // .map(tweet => `LANG: ${franc(tweet.text)} : ${tweet.text}`) //CHECK LANGUAGE
-    //   .map(tweet => tweet.text)
-    //   .filter(tweet => tweet.toLowerCase().includes('elon'));
-    //   console.log(tweets);
-    // })
+    //1. GET RECENT TWEETS
+    T.get('search/tweets', { q: '#tesla since:2020-04-15', count: 100 }, function(err, data, response) {
+      const tweets = data.statuses
+      // .map(tweet => `LANG: ${franc(tweet.text)} : ${tweet.text}`) //CHECK LANGUAGE
+      .map(tweet => tweet.text)
+      .filter(tweet => tweet.toLowerCase().includes('elon'));
+      console.log(tweets);
+    })
 
-    // //2. REAL TIME MONITORING USING STREAM (HASHTAG)
-    // var stream = T.stream('statuses/filter', { track: '#tesla' })
-    // stream.on('tweet', function (tweet) {
-    //     console.log(tweet.text);
-    //     console.log('Language: ' + franc(tweet.text));
-    //     console.log('------');
-    // })
+    //2. REAL TIME MONITORING USING STREAM (HASHTAG)
+    var stream = T.stream('statuses/filter', { track: '#tesla' })
+    stream.on('tweet', function (tweet) {
+        console.log(tweet.text);
+        console.log('Language: ' + franc(tweet.text));
+        console.log('------');
+    })
 
     // 3. REAL TIME MONITORING USING STREAM (LOCATION)
     var sanFrancisco = [ '-122.75', '36.8', '-121.75', '37.8' ]
